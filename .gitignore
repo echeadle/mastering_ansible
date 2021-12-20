@@ -127,3 +127,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Temporarily keep it out of git until decision to handle security issues
+insecure_key.pem
