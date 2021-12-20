@@ -23,4 +23,15 @@ services:
     domainname: echeadle.info
     hostname: control
     restart: always
+  test1:
+    image: ubuntu:impish
+    ports:
+       - "80:80"
+    networks:
+      custom:
+        ipv4_address: 192.168.65.15
+    dns: 8.8.8.8
+    domainname: echeadle.info
+    hostname: test1
+    restart: always
 
