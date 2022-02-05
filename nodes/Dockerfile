@@ -20,20 +20,19 @@ ENV DEBIAN_FRONTEND=noninteractive
 #   pip3 install pywinrm && \
 #   pip3 install ansible
 
-# RUN apt-get install -y apt-utils
 RUN apt-get update && \
+  apt-get install -y apt-utils && \
   apt-get install -y gcc python-dev libkrb5-dev && \
   apt-get install python3-pip -y && \
-  apt-get install -y openssh-server sudo curl wget bash-completion openssl && \
   python3 -m pip install --upgrade pip && \
   python3 -m pip  install --upgrade virtualenv && \
   python3 -m pip  install pywinrm[kerberos] && \
   apt install krb5-user -y && \ 
   python3 -m pip  install pywinrm && \
-  python3 -m pip  install ansibleo
+  python3 -m pip  install ansible
 
-COPY insecure_key.pem /root/.ssh/id_rsa
+COPY insecure_key.pem.pub /root/.ssh/id_rsa.pub
 EXPOSE 22 
 
-# ENTRYPOINT ["tail", "-f", "/dev/null"] 
-CMD ["/usr/sbin/sshd", "-D"]
+# ENTRYPOINT ["tail", "-f", "/dev/null"]
+CMD ["/usr/bin/bash"]

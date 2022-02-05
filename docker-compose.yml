@@ -1,37 +1,36 @@
 networks:
-  custom:
-    driver: bridge
-    ipam:
-      driver: default
-      config:
-        - subnet: 192.168.65.0/24
+    custom:
+        driver: bridge
+        ipam:
+            driver: default
+            config:
+                - subnet: 192.168.65.0/24
 
-volumes: 
-  workspace_ms_ans: 
-    external: true  
+volumes:
+    workspace_ms_ans:
+        external: true
 services:
-  control:
-    image: codespaces/ansible-control:2.9.17
-    ports:
-      - "8010:8000"
-    volumes:
-      - workspace_ms_ans:/workspace
-    networks:
-      custom:
-        ipv4_address: 192.168.65.10
-    dns: 8.8.8.8
-    domainname: echeadle.info
-    hostname: control
-    restart: always
-  test1:
-    image: ubuntu:impish
-    ports:
-       - "80:80"
-    networks:
-      custom:
-        ipv4_address: 192.168.65.15
-    dns: 8.8.8.8
-    domainname: echeadle.info
-    hostname: test1
-    restart: always
-
+    control:
+        image: edwardcheadle/ansible_2-12-1:0.1.0
+        ports:
+            - "8010:8000"
+        volumes:
+            - workspace_ms_ans:/workspace
+        networks:
+            custom:
+                ipv4_address: 192.168.65.10
+        dns: 8.8.8.8
+        domainname: echeadle.info
+        hostname: control
+        restart: always
+    test1:
+        image: ubuntu:impish
+        ports:
+            - "8020:80"
+        networks:
+            custom:
+                ipv4_address: 192.168.65.15
+        dns: 8.8.8.8
+        domainname: echeadle.info
+        hostname: test1
+        restart: always

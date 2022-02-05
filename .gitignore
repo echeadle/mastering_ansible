@@ -130,3 +130,4 @@ dmypy.json
 
 # Temporarily keep it out of git until decision to handle security issues
 insecure_key.pem
+Mastering-Ansible-Fourth-Edition/
